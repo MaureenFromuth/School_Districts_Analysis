@@ -111,7 +111,7 @@ In general, the impact was marginal.  The average reading scores for the distric
 
 **QUESTION: How is the school summary affected**
 
-To compare each school against one another by way of performance, we needed to create a new dataframe based off of metrics for each school.  We utilized the following code to accomplish this, paying particular attention to .count and .mean formulas.  Once we calculated each metric, we created data another dataframe and organized it based off of descending percentage of overall passing.  
+To calculate the performance of each school, we needed to create a new dataframe based off of metrics for each school.  We utilized the following code to accomplish this, paying particular attention to .count and .mean formulas.  
 
 ```
 # Determine the school type, total budget per school, and budget per student for each school based off of the school dataframe
@@ -138,7 +138,37 @@ per_passing_math_reading = per_passing_math_reading.groupby(["school_name"]).cou
 per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 100
 ```
 
-Overall, there was a significant change in Thomas High School’s performance relative to other schools in the school district.  For example, with the original data, Thomas High School ranked second with percentage of students with overall passing.  With the new data, however, they dropped to 8th place.  Additionally, their percentage of students who passed math and percentage who passed reading also dropped significantly.  This is due to the fact that our calculations take into account the total number of students within the school, to include those who’s scores are identified as NaN.  Of note, the overall scores for math did not have a significant change (decrease in the hundredth), but the reading scores increased slightly (83.8489 to 83.8960).  This increase is likely reflective of the overall scores in reading for the 9th grade at Thomas High School being lower than the other students, and thus bringing down the average as seen in the original metrics.
+The overall scores for math did not have a significant change (decrease in the hundredth), but the reading scores increased slightly (83.8489 to 83.8960).  This increase is likely reflective of the overall scores in reading for the 9th grade at Thomas High School being lower than the other students, and thus bringing down the average as seen in the original metrics.
+
+>**Original Thomas High School Summary**
+
+![Original Thomas High School Summary*](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Thomas-Original.png)
+
+>**Updated Thomas High School Summary**
+
+![Updated Thomas High School Summary*](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Thomas-Updated.png)
+
+**QUESTION: How does replacing the 9th graders’ math and reading scores affect Thomas High School’s performance relative to the other schools**
+
+Once we calculated metrics for each school, we created data another dataframe and organized it based off of descending percentage of overall passing.  
+
+```
+# Combine metrics by school into single DataFrame.
+per_school_summary_df = pd.DataFrame({
+             "School Type": per_school_types,
+             "Total Students": per_school_counts,
+             "Total School Budget": per_school_budget,
+             "Per Student Budget": per_school_capita,
+             "Average Math Score": per_school_math,
+           "Average Reading Score": per_school_reading,
+           "% Passing Math": per_school_passing_math,
+           "% Passing Reading": per_school_passing_reading,
+           "% Overall Passing": per_overall_passing_percentage})
+
+top_schools = per_school_summary_df.sort_values(["% Overall Passing"], ascending=False)
+```
+
+Overall, there was a significant change in Thomas High School’s performance relative to other schools in the school district.  For example, with the original data, Thomas High School ranked second with percentage of students with overall passing.  With the new data, however, they dropped to 8th place.  Additionally, their percentage of students who passed math and percentage who passed reading also dropped significantly.  This is due to the fact that our calculations take into account the total number of students within the school, to include those who’s scores are identified as NaN.  
 
 >**Original School Summary Ordered by Overall % Passed**
 
@@ -148,17 +178,11 @@ Overall, there was a significant change in Thomas High School’s performance re
 
 ![Updated School Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_%25Passing-Updated.png)
 
-
-
-**QUESTION: How does replacing the 9th graders’ math and reading scores affect Thomas High School’s performance relative to the other schools**
-
-
-
-
 **QUESTION: How does replacing the 9th graders’ scores affect the following:**
 
 *A: Math and reading scores by grade*
 
+As with the previous analysis based on schools, we used the following code to pull data from the merged dataframe to conduct analysis on the average score in math and then in reading for each grade within each school.  The code below is a sample of the code, and we replicated that for each additional grade.  We then created a new dataframe for average math scores and another new one for average reading scores.    
 
 ```
 # Create a grade level DataFrames (repeat the below for each grade)
@@ -171,6 +195,8 @@ ninth_grade_math_scores = ninth_graders.groupby(["school_name"]).mean()["math_sc
 ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["reading_score"]
 ```
 
+Due to the fact that the errors and corrections were isolated to a specific grade, the impact for average math scores is only within the 9th grade scores.  Those scores turned from a numerical value to NaN.
+
 >**Original Math Scores by Grade**
 
 ![Original Math Scores by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Original.png)
@@ -180,6 +206,7 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 ![Updated Math Scoresby Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Updated.png)
 
 
+Like the math scores, due to the fact that the errors and corrections were isolated to a specific grade, the impact for average reading scores is only within the 9th grade scores.  Those scores turned from a numerical value to NaN.
 
 >**Original Reading Scores by Grade**
 
@@ -190,6 +217,7 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 ![Updated Reading Scores by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Updated.png)
 
 *B: Scores by spending*
+
 
 
 ```
