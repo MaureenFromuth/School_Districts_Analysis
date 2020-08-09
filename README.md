@@ -5,21 +5,14 @@
 Our primary customer for this project is Maria, the Chief Data Scientist for a local school district.  Maria is conducting a study on standardized tests within her district and need to identify trends in order to support decision-making on budget and district priorities.  She wants us to conduct specific analysis and calculate metrics using these data sets to identify patterns.  This analysis and metrics include the following:
 - Overall Summary for the District 
 
-	*Total Schools, Total Students, Total Budget, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
-- Summary of Performance for Each School
-
-	*School Type, Total Number of Students, Total School Budget, School Budget per Student, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
+Our primary customer for this project is Maria, the Chief Data Scientist for a local school district.  Maria is conducting a study on standardized tests within her district and need to identify trends in order to support decision-making on budget and district priorities.  She wants us to conduct specific analysis and calculate metrics using these data sets to identify patterns.  This analysis and metrics include the following:
+- Overall Summary for the District: *Total Schools, Total Students, Total Budget, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
+- Summary of Performance for Each School: *School Type, Total Number of Students, Total School Budget, School Budget per Student, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
 - Summary of Scores in Math by Grade for Each School
 - Summary of Scores in Reading by Grade for Each School
-- Summary of Performance for Each Student Spending Bin
-
-	*Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
-- Summary of Performance for Each School Size Bin
-
-	*Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
-- Summary of Performance for Each School Type
-
-	*Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
+- Summary of Performance for Each Student Spending Bin: *Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
+- Summary of Performance for Each School Size Bin: *Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
+- Summary of Performance for Each School Type:  *Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
 
 She has asked us to provide analysis on math and reading scores from standardized tests based on information about each school within the district using two sets of data, [reading and math scores for all students](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/students_complete.csv) and [information on each of the schools](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/schools_complete.csv).  Each data set provided key fields to compute the metrics Maria needed for her analysis, as seen below.  To facilitate this calculation, we merged the school data into the student data on the field school_name using the code below.  
 
