@@ -306,10 +306,20 @@ Thomas High School is a charter school.  With the updated data, there is a negli
 
 ## Summary
 
-*Change 1 -* 
+There are a few overall conclusions we can draw from the comparisons between the summaries with the original data and the updated data.  The following outlines four key areas in which we identify changes. 
 
-*Change 2 -* 
+*Change 1 - Performance Per School Drop*
+ 
+With the original data, Thomas High School ranked number two out of fifteen schools based off of overall percentage of students who passed both the math and reading tests.  With the new data, however, they dropped to number 8 out of fifteen, with their overall percentage of passing dropping from 90.9% to 65.8%.  As identified above this significant drop is due to the fact that our calculations included the original total student population for Thomas High School.  This drop indicates how important the 9th grade scores were in their initial #2 ranking, but, due to the method of calculating the overall percentage of passing, it is difficult to identify how much of an impact their scores had.
 
-*Change 3 -* 
+*Change 2 - Decrease in the % of Students Passing Math, Reading, and Both within their Size, Spending, and Type Bin*
 
-*Change 4 -* 
+As identified above, although the average scores did not have a noticeable change, there was a significant decrease in the percentage of students who pass reading, math, and both reading and math.  These decreases were not significant within the spending and size bins, and slightly less so within the type.  This indicates that the 9th grade scores were significantly higher than many of their peers from other schools in these bins. 
+
+*Change 3 - Small Increase in the Average Reading Scores within their Size, Spending, and Type Bin*
+
+Within each of these bins there was a negligible increase between the old and the updated data for the average reading scores.  This change indicated that the 9th grade reading scores were likely lower than the rest of the grades’ reading scores.  The math and reading scores per grade summary confirmed this, with the 9th grade reading scores at Thomas High School being slightly less than the 10th and 12th graders.  
+
+*Change 4 - The Average Math Scores for the District Decreased while the Average Reading Scores Increased *
+
+Although both of these changes were minimal and negligible depending on the formatting, there was a small decrease in average math scores for the district and a negligible increase in average reading scores when we removed the erroneous data.  As mentioned above, the minuscule increase in average reading scores is a result of removing the 9th grade scores that were below the average and enough so that it was pulling the overall average reading scores down.  
