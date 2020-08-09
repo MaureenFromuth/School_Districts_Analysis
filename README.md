@@ -153,6 +153,24 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 
 ```
+# Cut the per_school_capita into the spending ranges.
+spending_bins = [0, 585, 630, 645, 675]
+pd.cut(per_school_capita, spending_bins)
+
+# Cut the per_school_capita into the spending ranges.
+group_names = ["<$584", "$585-629", "$630-644", "$645-675"]
+
+per_school_capita.groupby(pd.cut(per_school_capita, spending_bins)).count()
+
+# Categorize spending based on the bins.
+per_school_summary_df["Spending Ranges (Per Student)"] = pd.cut(per_school_capita, spending_bins, labels=group_names)
+
+# Calculate averages for the desired columns.
+spending_math_scores = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Math Score"]
+spending_reading_scores = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Reading Score"]
+spending_passing_math = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Math"]
+spending_passing_reading = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Reading"]
+overall_passing_spending = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Overall Passing"]
 ```
 >**Original Scores & Passing by Spending**
 
@@ -166,6 +184,19 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 
 ```
+# Establish the bins.
+size_bins = [0, 1000, 2000, 5000]
+group_names = ["Small (<1000)", "Medium (1000-2000)", "Large (2000-5000)"]
+
+# Categorize spending based on the bins.
+per_school_summary_df["School Size"] = pd.cut(per_school_summary_df["Total Students"], size_bins, labels=group_names)
+
+# Calculate averages for the desired columns.
+size_math_scores = per_school_summary_df.groupby(["School Size"]).mean()["Average Math Score"]
+size_reading_scores = per_school_summary_df.groupby(["School Size"]).mean()["Average Reading Score"]
+size_passing_math = per_school_summary_df.groupby(["School Size"]).mean()["% Passing Math"]
+size_passing_reading = per_school_summary_df.groupby(["School Size"]).mean()["% Passing Reading"]
+size_overall_passing = per_school_summary_df.groupby(["School Size"]).mean()["% Overall Passing"]
 ```
 
 >**Original Scores & Passing by School Size**
@@ -180,6 +211,12 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 
 ```
+# Calculate averages for the desired columns.
+type_math_scores = per_school_summary_df.groupby(["School Type"]).mean()["Average Math Score"]
+type_reading_scores = per_school_summary_df.groupby(["School Type"]).mean()["Average Reading Score"]
+type_passing_math = per_school_summary_df.groupby(["School Type"]).mean()["% Passing Math"]
+type_passing_reading = per_school_summary_df.groupby(["School Type"]).mean()["% Passing Reading"]
+type_overall_passing = per_school_summary_df.groupby(["School Type"]).mean()["% Overall Passing"]
 ```
 
 >**Original Scores & Passing by School Type**
