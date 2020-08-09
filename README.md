@@ -82,7 +82,7 @@ overall_passing_percent = overall_passing / float(student_count)*100
 
 >**Original School Summary: Top Performers**
 
-![Original School Summary: Top Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Top-Original.png)
+![Original School Summary: Top Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District%20Summary-Original.png)
 
 >**Updated School Summary: Top Performers**
 
