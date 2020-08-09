@@ -17,7 +17,6 @@ Updated inputs for 9th Grade at Thomas High School
 student_data_df.loc[(student_data_df["school_name"] == "Thomas High School") & (student_data_df["grade"] == "9th") & (student_data_df["reading_score"] >0), "reading_score"] = np.nan
 
 student_data_df.loc[(student_data_df["school_name"] == "Thomas High School") & (student_data_df["grade"] == "9th") & (student_data_df["math_score"] >0), "math_score"] = np.nan
-
 ```
 
 
@@ -61,12 +60,11 @@ percent_pass_reading = passing_reading_count / float(student_count) *100
 # Calculate the total number of students passing math AND reading across all schools and then the overall passing percentage
 overall_passing = passing_math_reading["student_name"].count()
 overall_passing_percent = overall_passing / float(student_count)*100
-
 ```
 
 >**Original District Summary**
 
-![Original District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District%20Summary-Original.png)
+![Original District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District_Summary-Original.png)
 
 >**Updated District Summary**
 
@@ -78,6 +76,28 @@ overall_passing_percent = overall_passing / float(student_count)*100
 
 
 ```
+# Determine the school type, total budget per school, and budget per student for each school based off of the school dataframe
+per_school_types = school_data_df.set_index(["school_name"])["type"]
+per_school_budget = school_data_df.set_index(["school_name"])["budget"]
+per_school_capita = per_school_budget / per_school_counts
+
+# Calculate the total student count off of the combined dataframe
+per_school_counts = student_data_complete_df["school_name"].value_counts()
+
+# Calculate the average test scores off of the combined dataframe
+per_school_math = student_data_complete_df.groupby(["school_name"]).mean()["math_score"]
+per_school_reading = student_data_complete_df.groupby(["school_name"]).mean()["reading_score"]
+
+# Calculate the percentage of passing math and reading scores per school off of the combined dataframe
+per_school_passing_math = per_school_passing_math / per_school_counts * 100
+per_school_passing_reading = per_school_passing_reading / per_school_counts * 100
+
+# Calculate the students who passed both math and reading off of the combined dataframe and then count the number of those students
+per_passing_math_reading = student_data_complete_df[(student_data_complete_df["math_score"] >= 70) & (student_data_complete_df["reading_score"] >= 70)]
+per_passing_math_reading = per_passing_math_reading.groupby(["school_name"]).count()["student_name"]
+
+# Calculate the overall passing percentage off of the combined dataframe
+per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 100
 ```
 
 >**Original School Summary: Top Performers**
@@ -101,6 +121,14 @@ overall_passing_percent = overall_passing / float(student_count)*100
 
 
 ```
+# Create a grade level DataFrames (repeat the below for each grade)
+ninth_graders = student_data_complete_df[(student_data_complete_df["grade"] == "9th")]
+
+# Group each school Series by the school name for the average math score (repeat the below for each grade)
+ninth_grade_math_scores = ninth_graders.groupby(["school_name"]).mean()["math_score"]
+
+# Group each school Series by the school name for the average reading score (repeat the below for each grade)
+ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["reading_score"]
 ```
 
 >**Original Math Scores By Grade**
