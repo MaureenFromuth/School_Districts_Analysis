@@ -100,24 +100,24 @@ per_passing_math_reading = per_passing_math_reading.groupby(["school_name"]).cou
 per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 100
 ```
 
->**Original School Summary: Top Performers**
+>**Original School Summary Ordered by Overall % Passed**
 
-![Original School Summary: Top Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District%20Summary-Original.png)
+![Original School Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_%25Passing-Original.png)
 
->**Updated School Summary: Top Performers**
+>**Updated School Summary Ordered by Overall % Passed**
 
-![Updated School Summary: Top Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Top-Updated.png)
+![Updated School Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_%25Passing-Updated.png)
 
->**Original School Summary: Bottom Performers**
-
-![Original School Summary: Bottom Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Bottom-Original.png)
-
->**Updated School Summary: Bottom Performers**
-
-![Updated School Summary: Bottom Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Bottom-Updated.png)
 
 
 **QUESTION: How does replacing the 9th graders’ math and reading scores affect Thomas High School’s performance relative to the other schools**
+
+
+
+
+**QUESTION: How does replacing the 9th graders’ scores affect the following:**
+
+*A: Math and reading scores by grade*
 
 
 ```
@@ -131,50 +131,23 @@ ninth_grade_math_scores = ninth_graders.groupby(["school_name"]).mean()["math_sc
 ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["reading_score"]
 ```
 
->**Original Math Scores By Grade**
-
-![Original Math Scores By Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Original.png)
-
->**Updated Math Scores By Grade**
-
-![Updated Math Scores By Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Updated.png)
-
-
->**Original Math Scores By Grade**
-
-![Original Reading Scores By Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Original.png)
-
->**Updated Reading Scores By Grade**
-
-![Updated Reading Scores By Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Updated.png)
-
-
-
-**QUESTION: How does replacing the 9th graders’ scores affect the following:**
-
-*A: Math and reading scores by grade*
-
-
-```
-```
-
 >**Original Math Scores by Grade**
 
-![Original Math Scores & Passing by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Original.png)
+![Original Math Scores by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Original.png)
 
 >**Updated Math Scores by Grade**
 
-![Updated Math Scores & Passing by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Updated.png)
+![Updated Math Scoresby Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Updated.png)
 
 
 
 >**Original Reading Scores by Grade**
 
-![Original Reading Scores & Passing by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Original.png)
+![Original Reading Scores by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Original.png)
 
 >**Updated Reading Scores by Grade**
 
-![Updated Reading Scores & Passing by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Updated.png)
+![Updated Reading Scores by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Updated.png)
 
 *B: Scores by spending*
 
