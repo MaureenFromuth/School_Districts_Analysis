@@ -3,9 +3,6 @@
 ## Overview of Project
 
 Our primary customer for this project is Maria, the Chief Data Scientist for a local school district.  Maria is conducting a study on standardized tests within her district and need to identify trends in order to support decision-making on budget and district priorities.  She wants us to conduct specific analysis and calculate metrics using these data sets to identify patterns.  This analysis and metrics include the following:
-- Overall Summary for the District 
-
-Our primary customer for this project is Maria, the Chief Data Scientist for a local school district.  Maria is conducting a study on standardized tests within her district and need to identify trends in order to support decision-making on budget and district priorities.  She wants us to conduct specific analysis and calculate metrics using these data sets to identify patterns.  This analysis and metrics include the following:
 - Overall Summary for the District: *Total Schools, Total Students, Total Budget, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
 - Summary of Performance for Each School: *School Type, Total Number of Students, Total School Budget, School Budget per Student, Average Math Score, Average Reading Score, % of Students who Passed Math, % of Students who Passed Reading, Overall % of Students who Passed Both*
 - Summary of Scores in Math by Grade for Each School
@@ -32,23 +29,24 @@ The school data contains the following information:
 - Budget for the School
 
 ```
+# Merging the two main data sets into one
 student_data_complete_df = pd.merge(student_data_df, school_data_df, on=["school_name"])
 ```
 
 Following initial analysis, Maria discovered errors in the Thomas High School 9th grade tests and needed to replace the original scores with a value of NaN.  Using the code below to update the Math and Reading scores for this subset, we then re-calculated the summaries and metrics Maria needed for her analysis.  The report results below provide comparison between our original analysis and the updated analysis with the replaced values.  
 
-### Purpose  
-
-## Results
-
-
-Updated inputs for 9th Grade at Thomas High School
 ```
+# Step 1. Import numpy as np.
+import numpy as np
+
+# Step 2. Use the loc method on the student_data_df to select all the reading scores from the 9th grade at Thomas High School and replace them with NaN.
 student_data_df.loc[(student_data_df["school_name"] == "Thomas High School") & (student_data_df["grade"] == "9th") & (student_data_df["reading_score"] >0), "reading_score"] = np.nan
 
+# Step 3. Refactor the code in Step 2 to replace the math scores with NaN.
 student_data_df.loc[(student_data_df["school_name"] == "Thomas High School") & (student_data_df["grade"] == "9th") & (student_data_df["math_score"] >0), "math_score"] = np.nan
 ```
 
+To identify the number of students and records this impacted, and also to help our comparative analysis, we used the following code.  This code gives us the total number of students impacted, and then the total number of records that are now NaN.  The output of these is all 461, which confirms we successfully updated the data to reflect the errors. 
 
 ```
 # Identify how many students are in the 9th grade at Thomas High School
@@ -62,12 +60,20 @@ student_data_df["reading_score"].isnull().sum()
 student_data_df["math_score"].isnull().sum()
 ```
 
+### Purpose  
+
+## Results
+
+Overall, the updated records to nullify Thomas High School’s 9th Grade scores had marginal impact on the district in general, but did have an impact on the school’s relative performance in terms of overall passing percentage as well as per capital spending, size, and type of school.  Specifics for each of the changes are listed below.  Of note, due to the formatting for some of the results, the impact is not discernible.  We are identifying these as no significant change, although there is likely a small change.
+
+
 **QUESTION: How is the district summary affected**
 
+Using the merged data set we calculated the necessary metrics needed for the overall district summary, as displayed below.  Of note, when calculating the number of total students, we cannot use the math or reading scores for a .count function, as they are null and will skew the results.  As such, we utilized the student ID column instead.   
 
 ```
 # Determine the number of total students 
-student_count = student_data_complete_df["reading_score"].count()
+student_count = student_data_complete_df[“Student “ID].count()
 
 # Calculate the total number of schools using a merged dataframe
 school_count= student_data_complete_df["school_name"].unique()
@@ -92,6 +98,8 @@ overall_passing = passing_math_reading["student_name"].count()
 overall_passing_percent = overall_passing / float(student_count)*100
 ```
 
+In general, the impact was marginal.  The average reading scores for the district did not change significantly (slight change in the hundredths), and the average math scores only negative change by .1 between the original and updated data, respectively.  There was also a 1% point decrease across all three percentages (math, reading, and overall passing) for the district between the original and updated data.
+
 >**Original District Summary**
 
 ![Original District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District%20Summary-Original.png)
@@ -101,9 +109,9 @@ overall_passing_percent = overall_passing / float(student_count)*100
 ![Updated District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District_Summary-Updated.png)
 
 
-
 **QUESTION: How is the school summary affected**
 
+To compare each school against one another by way of performance, we needed to create a new dataframe based off of metrics for each school.  We utilized the following code to accomplish this, paying particular attention to .count and .mean formulas.  Once we calculated each metric, we created data another dataframe and organized it based off of descending percentage of overall passing.  
 
 ```
 # Determine the school type, total budget per school, and budget per student for each school based off of the school dataframe
@@ -129,6 +137,8 @@ per_passing_math_reading = per_passing_math_reading.groupby(["school_name"]).cou
 # Calculate the overall passing percentage off of the combined dataframe
 per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 100
 ```
+
+Overall, there was a significant change in Thomas High School’s performance relative to other schools in the school district.  For example, with the original data, Thomas High School ranked second with percentage of students with overall passing.  With the new data, however, they dropped to 8th place.  Additionally, their percentage of students who passed math and percentage who passed reading also dropped significantly.  This is due to the fact that our calculations take into account the total number of students within the school, to include those who’s scores are identified as NaN.  Of note, the overall scores for math did not have a significant change (decrease in the hundredth), but the reading scores increased slightly (83.8489 to 83.8960).  This increase is likely reflective of the overall scores in reading for the 9th grade at Thomas High School being lower than the other students, and thus bringing down the average as seen in the original metrics.
 
 >**Original School Summary Ordered by Overall % Passed**
 
@@ -266,3 +276,4 @@ type_overall_passing = per_school_summary_df.groupby(["School Type"]).mean()["% 
 *Change 3 -* 
 
 *Change 4 -* 
+
