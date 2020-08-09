@@ -32,7 +32,7 @@ student_data_df["reading_score"].isnull().sum()
 student_data_df["math_score"].isnull().sum()
 ```
 
-- **How is the district summary affected**
+**QUESTION: How is the district summary affected**
 
 
 ```
@@ -72,7 +72,7 @@ overall_passing_percent = overall_passing / float(student_count)*100
 
 
 
-- **How is the school summary affected**
+**QUESTION: How is the school summary affected**
 
 
 ```
@@ -117,7 +117,7 @@ per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 
 ![Updated School Summary: Bottom Performers](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/School_Summary_Bottom-Updated.png)
 
 
-- **How does replacing the 9th graders’ math and reading scores affect Thomas High School’s performance relative to the other schools**
+**QUESTION: How does replacing the 9th graders’ math and reading scores affect Thomas High School’s performance relative to the other schools**
 
 
 ```
@@ -150,9 +150,9 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 
 
-- **How does replacing the 9th graders’ scores affect the following:**
+**QUESTION: How does replacing the 9th graders’ scores affect the following:**
 
-*Math and reading scores by grade*
+*A: Math and reading scores by grade*
 
 
 ```
@@ -176,7 +176,7 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 ![Updated Reading Scores & Passing by Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Reading_Score_by_Grade-Updated.png)
 
-*Scores by spending*
+*B: Scores by spending*
 
 
 ```
@@ -189,7 +189,7 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 ![Updated Scores & Passing by Spending](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Scores_Passing_by_Spending-Updated.png)
 
-*Scores by school size*
+*C: Scores by school size*
 
 
 ```
@@ -203,7 +203,7 @@ ninth_grade_reading_scores = ninth_graders.groupby(["school_name"]).mean()["read
 
 ![Updated Scores & Passing by School Size](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Scores_Passing_by_Size-Updated.png)
 
-*Score by school type*
+*D: Score by school type*
 
 
 ```
