@@ -206,7 +206,7 @@ Due to the fact that the errors and corrections were isolated to a specific grad
 ![Updated Math Scoresby Grade](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Math_Score_by_Grade-Updated.png)
 
 
-Like the math scores, due to the fact that the errors and corrections were isolated to a specific grade, the impact for average reading scores is only within the 9th grade scores.  Those scores turned from a numerical value to NaN.
+Like the math scores, due to the fact that the errors and corrections were isolated to a specific grade, the impact for average reading scores is only within the 9th grade scores.  Those scores turned from a numerical value to NaN.  Of note, you can see in the original data, that the 9th grade average reading scores were lower than the 10th and 12th grades, and only a tenth of a point higher than the 11th graders.  This confirms the assessment for the reason why the overall reading scores increase between the original and the updates within other summaries.
 
 >**Original Reading Scores by Grade**
 
@@ -218,7 +218,7 @@ Like the math scores, due to the fact that the errors and corrections were isola
 
 *B: Scores by spending*
 
-
+To understand the how the change in data impacts the outcome of per capita spending, we needed to first build out bins or ranges of spending.  Using the describe function, we were able to identify key attributes of school spending and create the following bins: 0-584, 585-629, 630-644, and 645-675.  We then cut the data based off of those bins and then grouped the results by them.  Cutting the data is a step not needed in the solutions above because the data above already had a field that we could group by.  Below is the final code to build out the calculations, from which we created another dataframe to display the data.
 
 ```
 # Cut the per_school_capita into the spending ranges.
@@ -240,6 +240,9 @@ spending_passing_math = per_school_summary_df.groupby(["Spending Ranges (Per Stu
 spending_passing_reading = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Reading"]
 overall_passing_spending = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Overall Passing"]
 ```
+
+Thomas High School’s per capita spending is $638 per student, which places then into the middle bin, $630-644.  With the updated data, there is a negligible decrease in the average math scores (change in the thousandths) and a negligible increase in the average reading scores (change in the thousandths).  Of note, this positive change reinforces the assessment above that the 9th grade reading scores were slightly lower than the those of the other grades and their removal provided a small benefit.  The percentage changes, however, were noticeable with a decrease from 73% to 67% of students passing math, a decrease from 84% to 77% of students passing reading, and a decrease from 63% to 56% of students passing both parts of the exam.  An interesting data point here is the significant difference in overall passing percentages between the top two and bottom two spending bins.  There is a 25% difference between the $630-644 and the $585-629 bin, but only a 2% difference between the $630-644 and the $645-675 bin.  Additionally, the higher per capita schools have the lower overall percentage of students who pass.  
+
 >**Original Scores & Passing by Spending**
 
 ![Original Scores & Passing by Spending](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Scores_Passing_by_Spending-Original.png)
@@ -250,6 +253,7 @@ overall_passing_spending = per_school_summary_df.groupby(["Spending Ranges (Per 
 
 *C: Scores by school size*
 
+As with spending, in order to understand the impact the erroneous data had on the impact of school size on performance, we created bins for school size.  These bins were small (<1000 students), medium (1000-2000 students, and large (2000-5000 students).  We cut the merged dataframe based on school size into these bins and then calculated the appropriate performance metrics.  Below is the final code to build out the calculations, from which we created another dataframe to display the data.
 
 ```
 # Establish the bins.
@@ -267,6 +271,8 @@ size_passing_reading = per_school_summary_df.groupby(["School Size"]).mean()["% 
 size_overall_passing = per_school_summary_df.groupby(["School Size"]).mean()["% Overall Passing"]
 ```
 
+The total student population at Thomas High School is 1635, which places then into the middle bin, 1000-2000 students.  With the updated data, there is a negligible decrease in the average math scores (change in the hundredths) and a slightly more noticeable increase in the average reading scores (change in the tens).  Of note, this positive change yet again reinforces the assessment above that the 9th grade reading scores were slightly lower than the those of the other grades and their removal provided a small benefit.  The percentage changes, however, were noticeable with a decrease from 94% to 88% of students passing math, a decrease from 97% to 91% of students passing reading, and a decrease from 91% to 85% of students passing both parts of the exam.
+
 >**Original Scores & Passing by School Size**
 
 ![Original Scores & Passing by School Size](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/Scores_Passing_by_Size-Original.png)
@@ -277,6 +283,7 @@ size_overall_passing = per_school_summary_df.groupby(["School Size"]).mean()["% 
 
 *D: Score by school type*
 
+Unlike the previous summaries, there is already a column and field attached to each record for the type of school within the merged dataset.  As such, we focused on calculating scores and percentage of students passing using the school type as a means to group our data.  Below is the code we used, and then took the outputs to create another dataframe to print.
 
 ```
 # Calculate averages for the desired columns.
@@ -286,6 +293,8 @@ type_passing_math = per_school_summary_df.groupby(["School Type"]).mean()["% Pas
 type_passing_reading = per_school_summary_df.groupby(["School Type"]).mean()["% Passing Reading"]
 type_overall_passing = per_school_summary_df.groupby(["School Type"]).mean()["% Overall Passing"]
 ```
+
+Thomas High School is a charter school.  With the updated data, there is a negligible decrease in the average math scores (change in the hundredths) and a slightly more noticeable increase in the average reading scores (change in the tens).  Of note, this positive change yet again reinforces the assessment above that the 9th grade reading scores were slightly lower than the those of the other grades and their removal provided a small benefit.  The percentage changes, however, were noticeable but less than the other summaries.  For example, the percentage of students passing math decreased from decrease from 94% to 90%, the percentage of students passing reading decrease from 97% to 94%, and the percentage of students passing both parts of the exam a decrease from 90% to 87%.  Regardless of the new data, charter schools did perform better than district schools as a whole.
 
 >**Original Scores & Passing by School Type**
 
@@ -304,4 +313,3 @@ type_overall_passing = per_school_summary_df.groupby(["School Type"]).mean()["% 
 *Change 3 -* 
 
 *Change 4 -* 
-
