@@ -64,7 +64,7 @@ overall_passing_percent = overall_passing / float(student_count)*100
 
 >**Original District Summary**
 
-![Original District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District_Summary-Original.png)
+![Original District Summary](https://github.com/MaureenFromuth/School_Districts_Analysis/blob/master/District%20Summary-Original.png)
 
 >**Updated District Summary**
 
